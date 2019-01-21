@@ -1,0 +1,124 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:u="sap.uxap"
+	xmlns:smartList="sap.ui.comp.smartlist">
+	<Page class="fragmentChange" title="Fragmento Change" showHeader="false">
+		<content>
+			<l:Grid defaultSpan="XL12 L12 M12 S12">
+				<l:VerticalLayout width="100%">
+					<Text class="bold h1" text="Datos Personales" textAlign="Center" width="100%"/>
+				</l:VerticalLayout>
+			</l:Grid>
+			<l:Grid defaultSpan="XL4 L4 M4 S12">
+				<VBox alignItems="Center">
+				<l:VerticalLayout>
+					<Text text="Nombre: "/>
+					<Input class="nombre"/>
+				</l:VerticalLayout>
+				</VBox>
+				<VBox alignItems="Center">
+				<l:VerticalLayout>
+					<Text text="Apellido: "/>
+					<Input class="apellido"/>
+				</l:VerticalLayout>
+				</VBox>
+				<VBox alignItems="Center">
+				<l:VerticalLayout>
+					<Text text="Teléfono: "/>
+					<Input class="telefono"/>
+				</l:VerticalLayout>
+				</VBox>
+			</l:Grid>
+			<l:Grid defaultSpan="XL4 L4 M4 S12">
+				<VBox alignItems="Center">
+					<l:VerticalLayout >
+						<Text class="bold h1" text="Metodo de Pago"/>
+						<RadioButtonGroup columns="1" class="tipoPago">
+							<buttons>
+								<RadioButton text="Paypal" class="paypal"/>
+								<RadioButton text="Efectivo" class="efectivo"/>
+								<RadioButton text="Tarjeta" class="tarjeta"/>
+							</buttons>
+						</RadioButtonGroup>
+					</l:VerticalLayout>
+				</VBox>
+				<!---->
+				<VBox alignItems="Center">
+					<l:VerticalLayout >
+						<Text class="bold h1" text="Entrega"/>
+						<RadioButtonGroup columns="1" class="entrega">
+							<buttons>
+								<RadioButton text="Local" class="local"/>
+								<RadioButton text="Domicilio" class="domicilio" select="openDomicilio"/>
+							</buttons>
+						</RadioButtonGroup>
+					</l:VerticalLayout>
+				</VBox>
+				<VBox alignItems="Center">
+					<l:VerticalLayout >
+						<Text class="bold h1" text="Hora"/>
+						<TimePicker class="hora" displayFormat="HH:mm" minutesStep="10" 
+									change="delimitTimeRange" 
+									tooltip="Porfavor introduzca un valor entre media hora despues de la actual y las 24:00 del mismo dia" />
+					</l:VerticalLayout>
+				</VBox>
+			</l:Grid>
+			<l:Grid defaultSpan="XL3 L3 M4 S6" visible="false">
+				<!-- Son 3 porque hay 4 elementos y el maximo de filas es 12, por lo que 3*4 = 12 -->
+				<l:VerticalLayout>
+					<Text text="Localidad: "/>
+					<Input class="localidad"/>
+				</l:VerticalLayout>
+				<l:VerticalLayout width="100%">
+					<Text text="Vía:" class="textVia"/>
+					<ComboBox class="comboVia">
+						<items>
+							<core:Item key="item-1-key" text="Calle" id="item0_1544612264861"/>
+							<core:Item key="item-2-key" text="Avenida" id="item1_1544612264862"/>
+							<core:Item key="item-3-key" text="Rotonda" id="item1_1544612264863"/>
+							<core:Item key="item-3-key" text="Paseo" id="item1_1544612264864"/>
+						</items>
+					</ComboBox>
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Text text="Nº - Piso" class="text0_copy2"/>
+					<Input xmlns="sap.m" class="nPiso"/>
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Text text="Dirección" class="text0_copy3"/>
+					<Input class="direccion"/>
+				</l:VerticalLayout>
+			</l:Grid>
+			<!---->
+			<l:Grid defaultSpan="XL12 L12 M12 S12">
+				<VBox alignItems="Center">
+					<l:VerticalLayout >
+						<Text class="bold h1" text="Pizza"/>
+						<ComboBox class="pizzas" width="100%" items="{path: 'optionPizza>/pizzas'}" >
+							<core:Item key="{optionPizza>pizzaName}" text="{optionPizza>pizzaName}"/>
+						</ComboBox>
+						<CheckBox class="aniadir" text="¿Deseas añadir algo a tu pizza?" select="personalizar"/>
+					</l:VerticalLayout>
+				</VBox>
+			</l:Grid>
+			<l:Grid defaultSpan="XL6 L6 M12 S12" width="100%" class="test">
+				<VBox alignItems="Center" items="{optionPizza>/personalizada}">
+					<!-- accede al array personalizada, dentro del cual cogerá el valor 0 (porque lo hace automaticamente ni idea) -->
+					<l:VerticalLayout>
+						<Text class="bold h4" text="Base"/>
+						<ComboBox class="base" enabled="false" items="{path: 'optionPizza>bases', templateShareable : true}">
+							<core:Item key="{optionPizza>base}" text="{optionPizza>base}"/>
+						</ComboBox>
+					</l:VerticalLayout>
+				</VBox>
+				<VBox alignItems="Center" items="{optionPizza>/personalizada}">
+					<l:VerticalLayout>
+						<Text class="bold h4" text="Toppings"/>
+						<MultiComboBox class="toppings" enabled="false" items="{path: 'optionPizza>toppings', templateShareable : true}">
+							<core:ListItem key="{optionPizza>topping} + aa" text="{optionPizza>topping}"/>
+						</MultiComboBox>
+						<Button text="Añadir" press="aniadirPizza"/>
+					</l:VerticalLayout>
+				</VBox>
+			</l:Grid>
+		</content>
+	</Page>
+</core:FragmentDefinition>

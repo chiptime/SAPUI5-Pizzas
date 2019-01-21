@@ -1,0 +1,86 @@
+{
+	"pizzas": [{
+		"pizzaName": "Margarita",
+		"base": "Tomate",
+		"toppings": [
+			"Queso",
+			"Oregano"
+		]
+	}, {
+		"pizzaName": "Hawaina",
+		"base": "Tomate",
+		"toppings": [
+			"Queso",
+			"Oregano",
+			"Piña",
+			"Jamon"
+		]
+	}, {
+		"pizzaName": "Cuatro quesos",
+		"base": "Tomate",
+		"toppings": [
+			"Queso",
+			"Oregano",
+			"Cuatro",
+			"Quesos"
+		]
+	}, {
+		"pizzaName": "Pepperoni",
+		"base": "Tomate",
+		"toppings": [
+			"Queso",
+			"Oregano",
+			"Pepperoni"
+		]
+	}, {
+		"pizzaName": "Pollo-Barbacoa",
+		"base": "Barbacoa",
+		"toppings": [
+			"Queso",
+			"Oregano",
+			"Pollo"
+		]
+	}, {
+		"pizzaName": "Carbonara",
+		"base": "Carbonara",
+		"toppings": [
+			"Queso",
+			"Oregano",
+			"Beacon",
+			"Jamon"
+		]
+	}, {
+		"pizzaName": "Prosciutto",
+		"base": "Tomate",
+		"toppings": [
+			"Queso",
+			"Oregano",
+			"Jamon"
+		]
+	},
+	{
+		"pizzaName": "Pizza Personalizada"
+	}
+	],
+	"personalizada" :[{
+		"pizzaName": "Pizza Personalizada",
+		"bases": [
+			{"base": "Tomate"}, 
+			{"base":"Barbacoa"}, 
+			{"base": "Carbonara"}
+			],
+		"toppings": [
+			{"topping": "Queso"	},
+			{"topping": "Oregano"}, 
+			{"topping": "Jamon York"}, 
+			{"topping": "Bacon"}, 
+			{"topping": "Queso Rulo"}, 
+			{"topping": "Champiñon"}, 
+			{"topping": "Pollo"},
+			{"topping": "Cerdo"},
+			{"topping": "4 Quesos"}, 
+			{"topping": "Jalapeños"}
+			]
+	}],
+	"algo": "algo"
+}

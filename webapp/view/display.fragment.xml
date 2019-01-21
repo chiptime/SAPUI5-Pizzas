@@ -1,0 +1,153 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+						 xmlns:smartList="sap.ui.comp.smartlist" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						 xsi:schemaLocation="sap.ui.comp.smartlist ">
+	<Page class="fragmentDisplay" title="Fragmento Change" showHeader="false">
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<f:Form class="FormDisplay" editable="false">
+					<f:title>
+						<core:Title text="Datos del pedido"/>
+					</f:title>
+					<f:layout>
+						<f:ColumnLayout columnsM="2" columnsL="3" columnsXL="4"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer title="Datos Personales">
+							<f:formElements>
+								<f:FormElement label="Nombre">
+									<f:fields>
+										<Text text="{datosPersonales>/profile/nombre}" class="localidad"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Apellido">
+									<f:fields>
+										<Text text="{datosPersonales>/profile/apellido}" class="via"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Teléfono">
+									<f:fields>
+										<Text text="{datosPersonales>/profile/telefono}" class="nombre"/>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+						<f:FormContainer title="Pago" class="container5">
+							<f:formElements>
+								<f:FormElement label="Metodo De Pago" class="element11">
+									<f:fields>
+										<Text text="{datosPersonales>/data/metodoDePago}" class="metodoDePago"/>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+						<f:FormContainer title="Entrega" class="container5">
+							<f:formElements>
+								<f:FormElement label="Entrega" class="element11">
+									<f:fields>
+										<Text text="{datosPersonales>/data/entrega}" class="entrega"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Localidad">
+									<f:fields>
+										<Text text="{datosPersonales>/data/localidad}" class="localidad"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Vía">
+									<f:fields>
+										<Text text="{datosPersonales>/data/via}" class="via"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Direccion">
+									<f:fields>
+										<Text text="{datosPersonales>/data/direccion}" class="nombre"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Piso">
+									<f:fields>
+										<Text text="{datosPersonales>/data/piso}" class="nPiso"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="Día">
+									<f:fields>
+										<Text text="{datosPersonales>/data/hora}" class="hora"/>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+				<Button text="algo" press="hacerAlgo"/>
+			</VBox>
+			<l:Grid class="gridSmartList" defaultSpan="XL12 L12 M12 S12">
+				<!-- si la smartlist imprime por pantalla el header es que se ha detectado el model pero no lo ha cargado, faltaria usar enableAutoBinding, o hacerlo a mano (rebindinlist) -->
+				<smartList:SmartList class="bold h1 smartListPizza" listType="Tree" enableAutoBinding="true"
+									 showRowCount="true" header="Lista de pizzas"
+									 showFullScreenButton="false" listBindingPath="pedidosPizza>/">
+					<smartList:listItemTemplate>
+						<CustomTreeItem type="Active" press="setVisibleBaseToppings">
+							<l:Grid defaultSpan="XL12 L12 M12 S12" class="treeItem">
+								<l:Grid width="100%" defaultSpan="XL1 L1 M1 S1">
+									<core:Icon src="sap-icon://navigation-right-arrow" tooltip="open"/>
+									<Label text="{pedidosPizza>pizzaName}" width="100%">
+										<layoutData>
+											<l:GridData span="XL10 L10 M10 S10"/>
+										</layoutData>
+									</Label>
+									<Button type="Emphasized" icon="sap-icon://edit" tooltip="edit pizza"
+											press="openEditPizza"/>
+									<Button type="Emphasized" icon="sap-icon://delete" tooltip="delete pizza"
+											press="deletePizza"/>
+								</l:Grid>
+								<l:Grid visible="false" width="100%" defaultSpan="XL3 L3 M3 S3">
+									<Label text="Base: {pedidosPizza>base}" width="100%"/>
+									<Label text="Toppings: {path: 'pedidosPizza>toppings' , formatter:'.formatterSmartTopping'}">
+										<layoutData>
+											<l:GridData span="XL9 L9 M9 S9"/>
+										</layoutData>
+									</Label>
+								</l:Grid>
+							</l:Grid>
+						</CustomTreeItem>
+					</smartList:listItemTemplate>
+					<OverflowToolbar></OverflowToolbar>
+				</smartList:SmartList>
+				<l:Grid class="formEditPizza" defaultSpan="XL12 L12 M12 S12" visible="false">
+					<!-- al dar un click sobre una pizza se volvera visible y se enlazara al elemento del array a modificar-->
+					<l:Grid defaultSpan="XL12 L12 M12 S12">
+						<VBox alignItems="Center">
+							<l:VerticalLayout>
+								<Text class="bold h1" text="Pizza"/>
+								<ComboBox class="pizzas" width="100%" items="{optionPizza>/pizzas}">
+									<core:Item key="{optionPizza>pizzaName}" text="{optionPizza>pizzaName}"/>
+								</ComboBox>
+							</l:VerticalLayout>
+						</VBox>
+					</l:Grid>
+					<l:Grid defaultSpan="XL6 L6 M12 S12" width="100%">
+						<VBox alignItems="Center" items="{optionPizza>/personalizada}">
+							<!-- accede al array personalizada, dentro del cual cogerá el valor 0 (porque lo hace automaticamente ni idea) -->
+							<l:VerticalLayout>
+								<Text class="bold h4" text="Base"/>
+								<ComboBox class="base" enabled="false"
+										  items="{path: 'optionPizza>bases', templateShareable : true}">
+									<core:Item key="{optionPizza>base}" text="{optionPizza>base}"/>
+								</ComboBox>
+							</l:VerticalLayout>
+						</VBox>
+						<VBox alignItems="Center" items="{optionPizza>/personalizada}">
+							<l:VerticalLayout>
+								<Text class="bold h4" text="Toppings"/>
+								<MultiComboBox class="toppings" enabled="false"
+											   items="{path: 'optionPizza>toppings', templateShareable : true}">
+									<core:ListItem key="{optionPizza>topping} + aa" text="{optionPizza>topping}"/>
+								</MultiComboBox>
+								<Button text="Añadir" press="editPizza"/>
+							</l:VerticalLayout>
+						</VBox>
+					</l:Grid>
+				</l:Grid>
+			</l:Grid>
+			<Text class="textoPrueba"/>
+		</content>
+	</Page>
+</core:FragmentDefinition>

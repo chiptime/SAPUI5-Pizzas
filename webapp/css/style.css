@@ -1,0 +1,18 @@
+/* Enter your custom styles here */
+.bold 
+{
+	font-weight: bold !important;
+}
+
+.h1
+{
+	font-size: 2rem !important;
+}
+.h4
+{
+	font-size: 1rem !important;
+}
+.treeItem
+{
+	width: 100% !important;
+}

@@ -1,0 +1,19 @@
+<mvc:View controllerName="untitled.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+          displayBlock="true" xmlns="sap.m">
+    <App>
+        <pages>
+            <Page id="page" title="{i18n>title}">
+                <customHeader>
+                    <Bar>
+                        <contentRight>
+                            <Button id="edit" text="Edit" enabled="false" visible="false" press="handleEditPress"/>
+                            <Button id="save" text="Save" type="Emphasized" press="handleSavePress"/>
+                            <Button id="cancel" text="Cancel" press="handleCancelPress"/>
+                            <!--	<Button text="Enviar" id="send" press="ponerContacto"/>-->
+                        </contentRight>
+                    </Bar>
+                </customHeader>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>
